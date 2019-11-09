@@ -1,3 +1,10 @@
+/// Author      : Loris Levêque
+/// Date        : 08.11.2019
+/// Description : Main files for js part
+///               Contain startup things
+///               
+///               
+
 /** CONSTANTS */
 const MAINDIV = document.getElementById("mainDiv")
 const INDEXMAXX = 10
@@ -36,7 +43,7 @@ class JQuery {
     }
 }
 
-/** INSTANTIATION */
+/** INSTANTIATIONS */
 let jQuery = new JQuery()
 let initializer = new Initializer(jQuery)
 
