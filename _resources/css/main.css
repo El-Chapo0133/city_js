@@ -7,13 +7,53 @@
 #mainDiv {
     position: absolute;
     margin: 50px;
+    z-index: 101;
 }
 .itemGrid {
     border: 3px var(--grey) solid;
     border-radius: 25px;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     position: absolute;
-    margin: 20px;
+    /*margin:10px;*/
     background-color: white;
+    padding: 5px;
+}
+#choosingDiv {
+    width: 900px;
+    height: 390px;
+    left: 15%;
+    top: -510px;
+    z-index: 10001;
+    position: absolute;
+    border: 3px var(--grey) solid;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: none;
+    background-color: white;
+    transition: .3s;
+}
+.itemChoose {
+    width: 90px;
+    height: 110px;
+    background-color: white;
+    float: left;
+    margin: 5px;
+}
+.itemTitle {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    font-family: "Comic Sans MS", cursive;
+}
+#choosingHeader {
+    height: 150px;
+}
+#button-header-close {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 20px;
+    right: 10px;
 }

@@ -36,7 +36,7 @@ class Case {
 
 /** FUNCTIONS */
 function initCases() {
-    for (var indexX = 0; index < INDEXMAXX; indexX++) {
+    for (var indexX = 0; indexX < INDEXMAXX; indexX++) {
         cases[indexX] = []
         for (var indexY = 0; indexY < INDEXMAXY; indexY++) {
             init_class(indexX, indexY)

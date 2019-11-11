@@ -14,6 +14,27 @@ const INDEXMAXY = 3
 var _document = document
 
 /** CLASSES */
+class Map {
+    constructor() {
+        this.map = this.initMap()
+    }
+    initMap() {
+        var t_map = []
+        for (var indexX = 0; indexX < INDEXMAXX; indexX++) {
+            t_map[indexX] = []
+            for (var indexY = 0; indexY < INDEXMAXY; indexY++) {
+                t_map[indexX][indexY] = 0
+            }
+        }
+        return t_map
+    }
+    setItem(x,y,value) {
+        this.map[x][y] = value
+    }
+    getItem(x,y) {
+        return this.map[x][y]
+    }
+}
 class Initializer {
     constructor(p_jQuery) {
         this.jQuery = p_jQuery
@@ -46,6 +67,7 @@ class JQuery {
 /** INSTANTIATIONS */
 let jQuery = new JQuery()
 let initializer = new Initializer(jQuery)
+let map = new Map()
 
 /** FUNCTION */
 

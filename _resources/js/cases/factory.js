@@ -15,6 +15,23 @@ const ID = [1,2,3]
 class Factory {
     constructor(index) {
         this.id = ID[index]
+        this.urlImage = this.getImage()
+    }
+    getImage() {
+        switch (this.id) {
+            case 0: {
+                return IMAGESURLOBJ.good_factory
+            }
+            case 1: {
+                return IMAGESURLOBJ.normal_factory
+            }
+            case 2: {
+                return IMAGESURLOBJ.bad_factory
+            }
+            default: {
+                throw ("bad argument")
+            }
+        }
     }
 }
 /** INSTANTIATIONS */
