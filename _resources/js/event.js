@@ -11,7 +11,7 @@ const CHOOSINGDIV = document.getElementById(DIVCHOOSINGID)
 const DIVCHOOSINGBUTTONCLOSE = "button-header-close"
 const BUTTONCLOSEHEADER = document.getElementById(DIVCHOOSINGBUTTONCLOSE)
 /** VARIABLES */
-
+var scrollXValues = 0
 /** CLASSES */
 class ActualCase {
     focusCase(x,y) {
@@ -78,11 +78,10 @@ function handlerCase(id) {
     /** TODO: set things to choose the building, then draw it */
     if (caseUsed(values.X, values.Y)) {
         /** TODO: set function to change item */
-        displayChoosingDiv.move()
+        displayChoosingDiv.move(scrollXValues)
     } else {
-        var buildIdChoosed
         /** TODO: set function to choose item */
-        displayChoosingDiv.move()
+        displayChoosingDiv.move(scrollXValues)
         //map.setItem(values.X,values.Y,buildIdChoosed)
         //drawer.draw(IMAGESURL.single_house, values.DOM.id)
     }
@@ -97,7 +96,7 @@ function caseUsed(x,y) {
 function setBuilding(id) {
     map.setItem(actualCase.X, actualCase.Y, id)
     var divId = actualCase.X + "-" + actualCase.Y
-    displayChoosingDiv.move()
+    displayChoosingDiv.move(scrollXValues)
     drawer.draw(IMAGESURLARRAY[id], divId)
 }
 function close() {
@@ -106,6 +105,11 @@ function close() {
 /** EVENTS */
 BUTTONCLOSEHEADER.addEventListener("click", () => {
     close()
+})
+document.addEventListener("scroll", (e) => {
+    //console.log(window.scrollY)
+    scrollXValues = window.scrollY - 4
+    displayChoosingDiv.moveWhileScroll(scrollXValues)
 })
 /** OTHERS */
 eventCases.addAllEvent()

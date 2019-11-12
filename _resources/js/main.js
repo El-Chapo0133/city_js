@@ -8,7 +8,7 @@
 /** CONSTANTS */
 const MAINDIV = document.getElementById("mainDiv")
 const INDEXMAXX = 10
-const INDEXMAXY = 3
+const INDEXMAXY = 10
 
 /** VARIABLES */
 var _document = document

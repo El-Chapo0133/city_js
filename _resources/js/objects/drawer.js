@@ -67,4 +67,4 @@ class Drawer {
 /** OTHERS */
 let drawer = new Drawer()
 
-drawer.setImagePerso("_resources/images/delete.png", DIVCHOOSINGBUTTONCLOSE, 50, 50)
+drawer.drawPerso("_resources/images/delete.png", DIVCHOOSINGBUTTONCLOSE, 50, 50)

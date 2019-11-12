@@ -23,22 +23,26 @@ const CHOOSINGDIVDISPLAY = "0"
 class DisplayChoosingDiv {
     constructor() {
         this.isVisible = false
+        this.div = this.getElement()
     }
-    move() {
+    move(scroll) {
+        console.log(scroll)
         if (this.isVisible) {
             this.hide()
         } else {
-            this.display()
+            this.display(scroll)
         }
     }
-    display() {
-        var div = this.getElement()
-        div.style.top = CHOOSINGDIVDISPLAY
+    display(scroll) {
+        this.div.style.top = (CHOOSINGDIVDISPLAY + scroll) + "px"
         this.isVisible = true
     }
+    moveWhileScroll(scroll) {
+        if (this.isVisible)
+            this.div.style.top = scroll + "px"
+    }
     hide() {
-        var div = this.getElement()
-        div.style.top = CHOOSINGDIVHIDE
+        this.div.style.top = CHOOSINGDIVHIDE
         this.isVisible = false
     }
     getElement() {
