@@ -26,7 +26,6 @@ class DisplayChoosingDiv {
         this.div = this.getElement()
     }
     move(scroll) {
-        console.log(scroll)
         if (this.isVisible) {
             this.hide()
         } else {
@@ -34,7 +33,7 @@ class DisplayChoosingDiv {
         }
     }
     display(scroll) {
-        this.div.style.top = (CHOOSINGDIVDISPLAY + scroll) + "px"
+        this.div.style.top = (scroll - 4) + "px"
         this.isVisible = true
     }
     moveWhileScroll(scroll) {

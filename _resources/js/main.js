@@ -8,7 +8,7 @@
 /** CONSTANTS */
 const MAINDIV = document.getElementById("mainDiv")
 const INDEXMAXX = 10
-const INDEXMAXY = 10
+const INDEXMAXY = 3
 
 /** VARIABLES */
 var _document = document
@@ -65,9 +65,9 @@ class JQuery {
 }
 
 /** INSTANTIATIONS */
+let map = new Map()
 let jQuery = new JQuery()
 let initializer = new Initializer(jQuery)
-let map = new Map()
 
 /** FUNCTION */
 

@@ -10,13 +10,21 @@ const DIVCHOOSINGID = "choosingDiv"
 const CHOOSINGDIV = document.getElementById(DIVCHOOSINGID)
 const DIVCHOOSINGBUTTONCLOSE = "button-header-close"
 const BUTTONCLOSEHEADER = document.getElementById(DIVCHOOSINGBUTTONCLOSE)
+const STARTINGDIVIDFROMIMAGEID = 5
 /** VARIABLES */
 var scrollXValues = 0
+var imageSeletedId = 0
 /** CLASSES */
 class ActualCase {
-    focusCase(x,y) {
+    constructor() {
+        this.X = 0
+        this.Y = 0
+        this.isImage = false
+    }
+    focusCase(x,y,isImage) {
         this.X = x
         this.Y = y
+        this.isImage = isImage
     }
 }
 class EventCases {
@@ -57,10 +65,26 @@ class EventChooser {
     }
     addEvent(item) {
         item.addEventListener("click", (e) => {
-            //console.log(e.target.id)
             var id = e.target.id
-            setBuilding(id.substr(id.length - 1, id.length))
+            imageSeletedId = id.substr(id.length - 1, id.length)
+            if (actualCase.isImage == false) {
+                setBuilding()
+            } else {
+                console.log("check!")
+            }
         })
+    }
+}
+/** CHANGED IT WITH SIMPLE IF */
+class EventImage {
+    addEvent(imageId) {
+        var image = this.getElement(imageId)
+        image.addEventListener("click", (e) => {
+            
+        })
+    }
+    getElement(id) {
+        return document.getElementById(id)
     }
 }
 /** INSTANTIATIONS */
@@ -68,23 +92,15 @@ let eventCases = new EventCases()
 let eventChooser = new EventChooser()
 let getValuesFromId = new GetValuesFromId()
 let actualCase = new ActualCase()
-
 /** FUNCTIONS */
 function handlerCase(id) {
+    // set id if it's an image id
+    if (isIdImage(id))
+        id = id.substr(STARTINGDIVIDFROMIMAGEID, id.length)
     var values = getValuesFromId.get(id)
-    actualCase.focusCase(values.X, values.Y)
-    // this thing work!
-    //drawer.draw(IMAGESURL.office, values.DOM.id)
+    actualCase.focusCase(values.X, values.Y, false)
     /** TODO: set things to choose the building, then draw it */
-    if (caseUsed(values.X, values.Y)) {
-        /** TODO: set function to change item */
-        displayChoosingDiv.move(scrollXValues)
-    } else {
-        /** TODO: set function to choose item */
-        displayChoosingDiv.move(scrollXValues)
-        //map.setItem(values.X,values.Y,buildIdChoosed)
-        //drawer.draw(IMAGESURL.single_house, values.DOM.id)
-    }
+    displayChoosingDiv.move(scrollXValues)
 }
 function caseUsed(x,y) {
     if (map.getItem(x,y) > 0) {
@@ -93,11 +109,28 @@ function caseUsed(x,y) {
         return false
     }
 }
-function setBuilding(id) {
-    map.setItem(actualCase.X, actualCase.Y, id)
-    var divId = actualCase.X + "-" + actualCase.Y
+function setBuilding(divId) {
+    if (isUndefined(divId))
+        divId = actualCase.X + "-" + actualCase.Y
+    /** clean the div before adding image */
+    document.getElementById(divId).innerHTML = ""
+    map.setItem(actualCase.X, actualCase.Y, imageSeletedId)
     displayChoosingDiv.move(scrollXValues)
-    drawer.draw(IMAGESURLARRAY[id], divId)
+    drawer.draw(IMAGESURLARRAY[imageSeletedId], divId)
+}
+function isIdImage(value) {
+    if (value.length > STARTINGDIVIDFROMIMAGEID) {
+        return true
+    } else {
+        return false
+    }
+}
+function isUndefined(value) {
+    if (value == undefined) {
+        return true
+    } else {
+        return false
+    }
 }
 function close() {
     displayChoosingDiv.hide()
@@ -107,7 +140,6 @@ BUTTONCLOSEHEADER.addEventListener("click", () => {
     close()
 })
 document.addEventListener("scroll", (e) => {
-    //console.log(window.scrollY)
     scrollXValues = window.scrollY - 4
     displayChoosingDiv.moveWhileScroll(scrollXValues)
 })

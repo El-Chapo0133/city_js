@@ -42,7 +42,7 @@ class Drawer {
     }
     draw(urlToImage, divId) {
         var div = this.getElement(divId)
-        div.appendChild(this.setImage(urlToImage))
+        div.appendChild(this.setImage(urlToImage, ("image" + divId)))
     }
     getElement(elementId) {
         return document.getElementById(elementId)
@@ -52,9 +52,10 @@ class Drawer {
         image.src = url
         return image
     }
-    setImage(url) {
+    setImage(url, imageId) {
         var image = new Image(IMAGEWIDTH, IMAGEHEIGHT)
         image.src = url
+        image.id = imageId
         return image
     }
 }
